@@ -2,7 +2,7 @@ from dateutil.parser import parse
 from datetime import datetime, timedelta
 
 class Expense:
-    def __init__(self, amount, category, date, note=None):
+    def __init__(self, amount:float|int, category, date, note=None):
         self.amount = amount
         self.category = category
         self.date = date
@@ -12,10 +12,16 @@ class Expense:
     def amount(self):
         return self._amount
 
+#   Avoid amount less than 0
     @amount.setter
-    def amount(self, value):
-        if value < 0:
-            raise ValueError("Amount cannot be less than 0")
+    def amount(self, value:int|float):
+        try:
+            value = float(value)
+        except TypeError:
+            print("The value must be positive number")
+        else:
+            if value < 0:
+                raise ValueError("Amount cannot be less than 0")
 
         self._amount = value
 
@@ -24,6 +30,7 @@ class Expense:
     def category(self):
         return self._category
     
+    # Avoid empty category
     @category.setter
     def category(self, value):
         if not value:
@@ -35,6 +42,7 @@ class Expense:
     def date(self):
         return self._date
     
+    # Avoid invalid date and adds time limit 
     @date.setter
     def date(self, value):
         try: 
@@ -42,7 +50,7 @@ class Expense:
         except ValueError:
             raise ValueError("Please enter a date")
         
-        
+
         today = datetime.today().date()
         start_date = today - timedelta(days=10)
         end_date = today
@@ -50,12 +58,13 @@ class Expense:
         if not (start_date <= expense_date <= end_date):
             raise ValueError(f"Date must be between {start_date} and {end_date}")
         
-        self._date = expense_date
+        self._date = str(expense_date)
     
     @property 
     def note(self):
         return self._note
     
+    # Add limit the the note length
     @note.setter
     def note(self, value):
         if value is not None:
@@ -64,4 +73,3 @@ class Expense:
             if len(value) > 300:
                     raise ValueError("Note limit is of 300 char")
         self._note = value
-

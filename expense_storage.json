@@ -1,0 +1,40 @@
+{
+    "expense": [
+        {
+            "amount": 120.0,
+            "category": "banana",
+            "date": "2026-02-02",
+            "note": "Diet"
+        },
+        {
+            "amount": 150.0,
+            "category": "Apple",
+            "date": "2026-02-05",
+            "note": "Diet"
+        },
+        {
+            "amount": 270.0,
+            "category": "Apple",
+            "date": "2026-02-05",
+            "note": "2026-02-05"
+        },
+        {
+            "amount": 12.0,
+            "category": "Banana",
+            "date": "2026-02-03",
+            "note": "bought only one"
+        },
+        {
+            "amount": 12.0,
+            "category": "Banana",
+            "date": "2026-02-02",
+            "note": "Bought only one again"
+        }
+    ],
+    "category_total": {
+        "banana": 120.0,
+        "Apple": 420.0,
+        "Banana": 24.0
+    },
+    "in_total_expense": 564.0
+}
